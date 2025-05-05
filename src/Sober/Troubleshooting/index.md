@@ -23,23 +23,6 @@ It means that the Roblox build Sober is in has reached it's end of the lifespan.
 > This is actually an uncommon issue, since it only happens once every approximate two weeks to a month if Sober is left without an update to a newer Roblox build, but this is just here in case it happens.
 > Sober uses a fixed-point release system, which means only one Roblox build is supported at a time per Sober update and there are no automatic updates to the next build. Manually attempting to update Roblox will not work since it requires a specific build version in order to install.
 
-<details>
-  <summary>Roblox build estimated cutoff table</summary>
-  This table provides an estimated range when Roblox cuts out a build. Roblox builds typically last approximately a month before Roblox cuts out the build from being accepted to the servers.
-
-| Build #                          | Build release date | Supported? | Estimated cutoff range             |
-| -------------------------------- | ------------------ | ---------- | ---------------------------------- |
-| 658                              | 01/31/25           | Yes        | 02/24/25 - 03/08/25*               |
-| 659                              | 02/06/25           | Yes        | 03/10/25 - 03/15/25                |
-| 660                              | 02/13/25           | Yes        | 03/17/25 - 03/22/25                |
-| 661 **(Current Sober build)**    | 02/20/25           | Yes        | 03/24/25 - 03/29/25                |
-| 662                              | 02/27/25           | Yes        | 03/25/25 - 03/29/25                |
-  
-  **cutoff estimation was pushed two weeks forward from the initial esimation due to holiday vacation
-  *this estimation is a week further due to a slightly shorter month
-</details>
-
-
 
 ### RBXCRASH: OutOfMemory (Failed to allocate memory. size = [x], alignment = [y])
 
@@ -58,7 +41,9 @@ If it doesn't, append the following FFlags into the `"fflags"` section at `~/.va
 
 If it doesn't work, set the `"DFIntTextureQualityOverride"` FFlag to `1` instead. Otherwise, you might be out of luck.
 
-> Essentially, to avoid this problem without downscaling textures, you would need an NVIDIA GPU that has 4 GB or greater VRAM. Alternatively, you could also use a Mesa capable GPU (AMD/Intel).
+> Setting the override to `0` is not recommended, however this is the lowest possible setting textures are able to render. Only set to `0` at the last resort.
+
+> Setting the texture override will not guarantee that all games will be playable. Essentially, to mostly avoid this problem without downscaling textures, you would need an NVIDIA GPU that has 4 GB or greater VRAM. Alternatively, you could also use a Mesa capable GPU (AMD/Intel).
 
 
 ### I was kicked due to "Unexpected client behavior" (Error 268)
@@ -70,8 +55,16 @@ There has been recent reports after Sober was recently updated. (Commit `0.0.0-3
 
 
 ### Sober just randomly crashes
-Depends on if the logs actually provided something useful. Otherwise, we cannot give a definite answer.
+Depends on if the logs actually provided something useful.
 
+Otherwise, we cannot give a definite answer.
+
+
+#### Solution
+If you are sure your primary language is set anything but English, launch Sober using this command:
+```console
+$ flatpak override --user --env=LC_ALL=en_US.UTF-8 org.vinegarhq.Sober
+```
 
 
 ### It says Sober couldn't launch because my card does not support Vulkan
@@ -114,11 +107,11 @@ If you haven't logged into Sober, you should do it now. Afterwards you will be a
 
 
 ### Automatic download isn't working (Long hang time; falls back to manual install)
-### Installing Sober gives me a 403 error
-- Three out of ten chances is that your ISP is blocking access to Google Play's APIs, which is what Sober is attempting to contact in order to download the correct APK file. Otherwise, either you should check your internet connection or the API is down.
-- Three out of ten chances is that your ISP is blocking access to Sober's repo server in Cloudflare, which is what Flatpak is attempting to contact in order to obtain the Flatpak remote in order to download Sober. Otherwise, two out of ten could be that since the repo is a private web page, it cannot be accessed either way.
-
-> There have also been reports of being unable to copy the apk to a directory
+### The manifest could not be reached
+Several scenarios could happen:
+- Your ISP is blocking access to Google Play's APIs, which is what Sober is attempting to contact in order to download the correct APK file. Otherwise, either you should check your internet connection or the API is down.
+- Your ISP is blocking access to Sober's repo server in Cloudflare, which connection is required to get the manifest. The manifest determines if you need to update Sober to the next application version.
+- Otherwise, it could be that since the repo is a private web page, it cannot be accessed either way.
 
 #### Solution
 Use a VPN
@@ -142,7 +135,7 @@ Either your DE does not know that it exists, Flatpak failed to create one when y
 #### Solution
 Wait for the DE to index the shortcut first.
 
-If it doesn't index, make sure that there are both `.desktop` entries in `~/.local/share/flatpak/exports/share/applications` and `/home/[user]/.local/share/flatpak/app/org.vinegarhq.Sober/current/active/export/share/applications`. If there isn't you should create one at `/home/[user]/.local/share/flatpak/app/org.vinegarhq.Sober/current/active/export/share/applications` with the following:
+If it doesn't index, make sure that there are both `.desktop` entries in `~/.local/share/flatpak/exports/share/applications` and `/home/[user]/.local/share/flatpak/app/org.vinegarhq.Sober/current/active/export/share/applications`. If there isn't you should create one at `~/.local/share/flatpak/app/org.vinegarhq.Sober/current/active/export/share/applications` with the following:
 ```
 [Desktop Entry]
 Type=Application
