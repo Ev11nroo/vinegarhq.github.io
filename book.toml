@@ -1,13 +1,13 @@
 [book]
-authors = ["Vinegar contributors"]
+authors = ["VinegarHQ contributors"]
 language = "en"
-title = "Vinegar"
-description = "The documentation of the Vinegar project, which makes Roblox on Linux more convenient."
+title = "VinegarHQ"
+description = "The documentation of the VinegarHQ project, which makes Roblox on Linux more convenient."
 
 [output.html]
 default-theme = "light"
 preferred-dark-theme = "coal"
-git-repository-url = "https://github.com/vinegarhq/vinegar"
+git-repository-url = "https://github.com/vinegarhq"
 edit-url-template = "https://github.com/vinegarhq/vinegarhq.github.io/edit/main/{path}"
 
 [output.html.print]
