@@ -52,12 +52,6 @@ Depends on if the logs actually provided something useful.
 Otherwise, we cannot give a definite answer.
 
 
-#### Solution
-If you are sure your primary language is set anything but English, launch Sober using this command:
-```console
-$ flatpak override --user --env=LC_ALL=en_US.UTF-8 org.vinegarhq.Sober
-```
-
 
 ### It says Sober couldn't launch because my card does not support Vulkan
 Please see question #4 on [the FAQ](./FAQ/index.html#is-my-gpu-compatible). Otherwise, you will have to use OpenGL.
